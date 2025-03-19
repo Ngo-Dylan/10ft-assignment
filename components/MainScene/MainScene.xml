@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="MainScene" extends="Scene">
+    <interface>
+        <function name = "NavigateTo"/>
+    </interface>
+    <script type="text/brightscript" uri="MainScene.brs" />
+    <children>
+        <Group id = "views" />
+    </children>
+</component>
