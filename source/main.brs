@@ -8,8 +8,8 @@ function Main() as void
     while(true)
         msg = Wait(0, m.port)
         msgType = Type(msg)
-        if msgType = "roSGScreenEvent"
-            if msg.IsScreenClosed() then return
+        if (msgType = "roSGScreenEvent")
+            if (msg.IsScreenClosed()) return
         end if
     end while
 end function

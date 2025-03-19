@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="HomeView" extends="Group">
+    <interface>
+    </interface>
+
+    <script type="text/brightscript" uri="./HomeView.brs" />
+
+    <children>
+        <SimpleLabel id="header" fontUri="font:LargeBoldSystemFont" text="Home" translation="[120, 120]" />
+    </children>
+</component>
