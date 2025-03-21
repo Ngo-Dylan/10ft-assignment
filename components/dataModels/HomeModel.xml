@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="HomeModel" extends="Task">
+    <interface>
+        <field id="request" type="assocArray" />
+        <field id="data" type="node" alwaysNotify="true" />
+    </interface>
+
+    <script type="text/brightscript" uri="./HomeModel.brs" />
+    <script type="text/brightscript" uri="./HomeDataParser.brs" />
+
+    <children>
+    </children>
+</component>

@@ -1,30 +1,15 @@
 ' ***************************************************
-' *** init()
+' *** parseGenericData(response)
 ' ***************************************************
-function init() as void
-    m.top.functionName = "getDataOnTaskThread"
-end function
+function parseGenericData(response as object) as object
+    containers = response?.data?.StandardCollection?.containers
+    if (containers = invalid) return invalid
 
-' ***************************************************
-' *** getDataOnTaskThread()
-' ***************************************************
-function getDataOnTaskThread() as void
-    urlTransfer = CreateObject("roUrlTransfer")
-    urlTransfer.SetCertificatesFile("common:/certs/ca-bundle.crt")
-    urlTransfer.SetUrl("https://cd-static.bamgrid.com/dp-117731241344/home.json")
-    ' TODO: Use AsyncGetToString with message port
-    res = ParseJson(urlTransfer.GetToString())
-    containers = res?.data?.StandardCollection?.containers
-    if (containers = invalid)
-        m.top.response = invalid
-        return
-    end if
     data = CreateObject("roSGNode", "ContentNode")
     for each row in containers
         if (row.set.refId = invalid)
             rowData = data.CreateChild("ContentNode")
             rowData.title = row.set.text.title.full.set.default.content
-            ' rowData.contentType = "section"
             items = row.set.items
             for each item in items
                 itemData = rowData.CreateChild("ContentNode")
@@ -36,8 +21,7 @@ function getDataOnTaskThread() as void
             end for
         end if
     end for
-    ' Rendezvous
-    m.top.response = data
+    return data
 end function
 
 ' ***************************************************

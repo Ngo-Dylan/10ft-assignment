@@ -8,6 +8,7 @@ function init() as void
     m.poster = m.top.FindNode("poster")
     m.poster.ObserveFieldScoped("loadStatus", "onPosterLoadStatusChanged")
     m.title = m.top.FindNode("title")
+    m.top.opacity = 0.9
 end function
 
 ' ***************************************************
@@ -50,6 +51,7 @@ function onFocusPercentChanged() as void
     scaleY = 1 + 0.3 * focusPercent
     m.title.opacity = focusPercent
     m.contentGroup.scale = [scaleX, scaleY]
+    m.top.opacity = 0.9 + 0.1 * focusPercent
 end function
 
 ' ***************************************************

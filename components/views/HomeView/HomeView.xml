@@ -5,6 +5,7 @@
     </interface>
 
     <script type="text/brightscript" uri="./HomeView.brs" />
+    <script type="text/brightscript" uri="./HomeViewModel.brs" />
 
     <children>
         <Rectangle width="1920" height="1080" color="0x00160B" />

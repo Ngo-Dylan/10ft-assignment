@@ -2,9 +2,12 @@
 ' *** init()
 ' ***************************************************
 function init() as void
+    if (m.viewModel = invalid) m.viewModel = createHomeViewModel(m)
     m.loadingSpinner = m.top.FindNode("loadingSpinner")
     m.list = m.top.FindNode("list")
     m.top.ObserveFieldScoped("focusedChild", "onFocusChanged")
+    setUpLoadingSpinner()
+    m.viewModel.requestHomeData()
 end function
 
 ' ***************************************************
@@ -12,8 +15,6 @@ end function
 ' ***************************************************
 function onFocusChanged() as void
     if (m.top.HasFocus())
-        setUpLoadingSpinner()
-        setupHomeService()
     end if
 end function
 
@@ -32,21 +33,11 @@ function setUpLoadingSpinner() as void
 end function
 
 ' ***************************************************
-' *** setupHomeService()
+' *** updateListData(data)
 ' ***************************************************
-function setupHomeService() as void
-    m.retrieveData = CreateObject("roSGNode", "HomeServiceTask")
-    m.retrieveData.ObserveFieldScoped("response", "updateListData")
-    m.retrieveData.control = "RUN"
-end function
-
-' ***************************************************
-' *** updateListData(event)
-' ***************************************************
-function updateListData(event as object) as void
+function updateListData(listData as object) as void
     m.loadingSpinner.visible = "false"
     m.loadingSpinner.control = "stop"
-    listData = event.GetData()
     if (listData <> invalid)
         m.list.content = listData
         m.list.SetFocus(true)
