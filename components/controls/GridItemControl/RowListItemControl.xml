@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="RowListItemControl" extends="Group">
+    <interface>
+        <field id="itemContent" type="node" onChange="onItemContentChanged" />
+        <field id="focusPercent" type="float" onChange="onFocusPercentChanged" />
+        <field id="itemHasFocus" type="boolean" onChange="onFocusChanged" />
+    </interface>
+
+    <script type="text/brightscript" uri="./RowListItemControl.brs" />
+
+    <children>
+        <Group id="contentGroup" scaleRotateCenter="[160, 90]" translation="[16, 27]">
+            <Rectangle id="backplate" width="320" height="180" color="0x000000" opacity="0.6" />
+            <Poster id="poster" loadDisplayMode="limitSize" width="320" height="180" />
+        </Group>
+        <ScrollingLabel id="title" maxWidth="352" font="font:SmallestBoldSystemFont" opacity="0" translation="[0, 245]" />
+    </children>
+</component>
