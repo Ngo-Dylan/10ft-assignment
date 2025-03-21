@@ -51,3 +51,9 @@ function onFocusPercentChanged() as void
     m.title.opacity = focusPercent
     m.contentGroup.scale = [scaleX, scaleY]
 end function
+
+' ***************************************************
+' *** onRowFocusPercentChanged()
+' ***************************************************
+function onRowFocusPercentChanged() as void
+end function

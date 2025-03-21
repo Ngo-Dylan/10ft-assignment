@@ -4,8 +4,17 @@
 function init() as void
     m.loadingSpinner = m.top.FindNode("loadingSpinner")
     m.list = m.top.FindNode("list")
-    setUpLoadingSpinner()
-    setupHomeService()
+    m.top.ObserveFieldScoped("focusedChild", "onFocusChanged")
+end function
+
+' ***************************************************
+' *** onFocusChanged()
+' ***************************************************
+function onFocusChanged() as void
+    if (m.top.HasFocus())
+        setUpLoadingSpinner()
+        setupHomeService()
+    end if
 end function
 
 ' ***************************************************
@@ -43,4 +52,15 @@ function updateListData(event as object) as void
         m.list.SetFocus(true)
     else
     end if
+end function
+
+' ***************************************************
+' *** onKeyEvent(key, press)
+' ***************************************************
+function onKeyEvent(key, press) as boolean
+    isHandled = false
+    if (press)
+        if (m.loadingSpinner.visible) isHandled = true
+    end if
+    return isHandled
 end function
