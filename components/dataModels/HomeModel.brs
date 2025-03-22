@@ -12,11 +12,16 @@ function fetchHomeData() as void
     requestData = m.top.request
     requestUrl = requestData.url
     response = makeGetRequest(requestUrl)
-    m.top.data = parseGenericData(ParseJson(response))
+    if (requestData.apiType = "Generic")
+        m.top.data = parseGenericData(ParseJson(response))
+    else if (requestData.apiType = "Ref")
+        response = ParseJson(response)
+        m.top.data = parseRefData(response, requestData.refType, requestData.title)
+    end if
 end function
 
 ' ***************************************************
-' *** makeGetRequest()
+' *** makeGetRequest(requestUrl)
 ' ***************************************************
 function makeGetRequest(requestUrl as string) as object
     port = CreateObject("roMessagePort")
