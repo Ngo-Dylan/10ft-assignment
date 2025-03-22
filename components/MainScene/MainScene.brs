@@ -7,7 +7,7 @@ function init() as void
     m.mainView = m.views.CreateChild("MainView")
     m.viewStack.Push(m.mainView)
     m.viewList = m.top.FindNode("viewList")
-    m.trackerUI = m.top.CreateChild("TrackerTask")
+    ' m.trackerUI = m.top.CreateChild("TrackerTask")
 end function
 
 ' ***************************************************
