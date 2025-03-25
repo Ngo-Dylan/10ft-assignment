@@ -2,8 +2,8 @@
 
 This guide provides step-by-step instructions on running and debugging your Roku app using two methods:
 
-1. [Using BrightScript Extension in VS Code](#-1-running-through-brightscript-extension-vs-code)
-2. [Sideloading a Packaged ZIP File](#-2-sideloading-a-roku-app-using-a-zip-file)
+1. [Using BrightScript Extension in VS Code](#1-running-through-brightscript-extension-vs-code)
+2. [Sideloading a Packaged ZIP File](#2-sideloading-a-roku-app-using-a-zip-file)
 
 ---
 
