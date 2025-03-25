@@ -5,8 +5,6 @@ This guide provides step-by-step instructions on running and debugging your Roku
 1. [Using BrightScript Extension in VS Code](#1-running-through-brightscript-extension-vs-code)
 2. [Sideloading a Packaged ZIP File](#2-sideloading-a-roku-app-using-a-zip-file)
 
----
-
 ## **Prerequisites**
 Ensure the following before proceeding:
 
@@ -29,22 +27,16 @@ Ensure to have Visual Studio Code installed on your computer
    - **Roku IP Address**
    - **Developer Mode Password**
 
----
-
 ### **Step 2: Install Required Tools**
 - Open **VS Code**.
 - Install the **BrightScript** extension:
    - Press `Ctrl + Shift + X` (Windows) or `Shift + Command + X` (Mac) (or click on Extensions).
    - Search for **BrightScript Language** and install it.
 
----
-
 ### **Step 3: Configure the included `launch.json`**
 1. Open `launch.json` file inside `.vscode`
 2. Replace `XXXXX` in `host` with your Roku device IP Address
 3. Replace `XXXXX` in `password` with your Developer Mode Password
-
----
 
 ### **Step 4: Run and Debug**
 - Press `F5` or `Run → Start Debugging` to run the app
@@ -69,8 +61,6 @@ This method is useful for manually installing the app on a Roku device.
    - **Roku IP Address**
    - **Developer Mode Password**
 
----
-
 ### **Step 3: Upload ZIP File**
 1. Open a browser and navigate to:
 
@@ -82,8 +72,6 @@ http://<ROKU_IP_ADDRESS>
    - **Password:** Developer mode password.
 3. Click `Upload` and select the `roku-deploy.zip` file.
 4. Click `Install with zip` to sideload the app.
-
----
 
 ### **Step 4: Run the App**
 - After uploading, the app should run automatically.
