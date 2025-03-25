@@ -5,8 +5,8 @@
             "name": "BrightScript Debug: Launch",
             "type": "brightscript",
             "request": "launch",
-            "host": "192.168.1.9",
-            "password": "1409",
+            "host": "XXXXX",
+            "password": "XXXXX",
             "rootDir": "${workspaceFolder}",
             "files": [
                 "manifest",
