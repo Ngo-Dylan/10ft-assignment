@@ -11,6 +11,6 @@
         <Rectangle width="1920" height="1080" color="0x00160B" />
         <BusySpinner id="loadingSpinner" spinInterval="0.5" visible="false" />
         <RowList id="list" itemComponentName="RowListItemControl" numRows="3" itemSize="[1840, 275]" rowItemSize="[[352, 234]]" rowItemSpacing="[[-5, 0]]" itemSpacing="[0, 50]" showRowLabel="[true]" rowLabelFont="font:SmallestSystemFont" rowLabelOffset="[[0, 5]]" focusBitmapUri="pkg:/images/focus-border_$$RES$$.9.png" vertFocusAnimationStyle="floatingFocus" rowFocusAnimationStyle="floatingFocus" itemClippingRect="[0, -62, 1840, 1080]" translation="[80, 62]" />
-        <SimpleLabel id="errorMessage" fontUri="font:LargeBoldSystemFont" />
+        <SimpleLabel id="errorMessage" fontUri="font:LargeBoldSystemFont" visible="false" />
     </children>
 </component>

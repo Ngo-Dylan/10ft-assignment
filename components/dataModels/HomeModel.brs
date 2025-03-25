@@ -12,6 +12,7 @@ function fetchHomeData() as void
     requestData = m.top.request
     requestUrl = requestData.url
     response = makeGetRequest(requestUrl)
+    if (response = invalid) response = "{}"
     if (requestData.apiType = "Generic")
         m.top.data = parseGenericData(ParseJson(response))
     else if (requestData.apiType = "Ref")

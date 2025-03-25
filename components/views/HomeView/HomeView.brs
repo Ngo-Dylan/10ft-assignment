@@ -5,6 +5,7 @@ function init() as void
     if (m.viewModel = invalid) m.viewModel = createHomeViewModel(m)
     m.loadingSpinner = m.top.FindNode("loadingSpinner")
     m.list = m.top.FindNode("list")
+    m.errorMessage = m.top.FindNode("errorMessage")
     m.top.ObserveFieldScoped("focusedChild", "onFocusChanged")
     m.list.ObserveFieldScoped("itemFocused", "onFocusedRowChanged")
     m.refList = []
@@ -48,6 +49,7 @@ function updateListData(listData as object) as void
             m.refList = listData.refSets
         end if
     else
+        showErrorMessage()
     end if
 end function
 
@@ -71,6 +73,7 @@ end function
 ' *** updateRefData(data)
 ' ***************************************************
 function updateRefData(data as object) as void
+    if (data = invalid) return
     m.list.content.AppendChild(data)
 end function
 
@@ -93,4 +96,15 @@ function onKeyEvent(key, press) as boolean
         end if
     end if
     return isHandled
+end function
+
+' ***************************************************
+' *** showErrorMessage()
+' ***************************************************
+function showErrorMessage() as void
+    m.errorMessage.text = "Service Unavailable. Please, try again later!"
+    posX = (1920 - m.errorMessage.BoundingRect().width) / 2
+    posY = (1080 - m.errorMessage.BoundingRect().height) / 2
+    m.errorMessage.translation = [posX, posY]
+    m.errorMessage.visible = true
 end function
