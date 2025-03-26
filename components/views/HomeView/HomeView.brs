@@ -64,7 +64,6 @@ function onFocusedRowChanged(event as object) as void
     if (focusedRow = m.lastFocusedRow) return
     m.lastFocusedRow = focusedRow
     if (m.refList.IsEmpty()) return
-    focusedRow = event.GetData()
     currItemCount = m.list.content.GetChildCount()
     if (currItemCount - focusedRow < 4)
         m.viewModel.requestRefData(m.refList.Shift())
