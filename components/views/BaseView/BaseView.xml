@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="BaseView" extends="Group">
+    <interface>
+        <function name="onViewCreated" />
+    </interface>
+
+    <script type="text/brightscript" uri="./BaseView.brs" />
+
+    <children>
+        <Rectangle width="1920" height="1080" color="0x00160B" />
+    </children>
+</component>

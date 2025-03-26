@@ -8,6 +8,7 @@ function init() as void
     m.errorMessage = m.top.FindNode("errorMessage")
     m.top.ObserveFieldScoped("focusedChild", "onFocusChanged")
     m.list.ObserveFieldScoped("itemFocused", "onFocusedRowChanged")
+    m.list.ObserveFieldScoped("rowItemSelected", "onItemSelected")
     m.refList = []
     m.lastFocusedRow = 0
     setUpLoadingSpinner()
@@ -19,6 +20,7 @@ end function
 ' ***************************************************
 function onFocusChanged() as void
     if (m.top.HasFocus())
+        if (m.list.content <> invalid) m.list.SetFocus(true)
     end if
 end function
 
@@ -75,6 +77,19 @@ end function
 function updateRefData(data as object) as void
     if (data = invalid) return
     m.list.content.AppendChild(data)
+end function
+
+' ***************************************************
+' *** onItemSelected(event)
+' ***************************************************
+function onItemSelected(event as object) as void
+    rowItemSelected = event.GetData()
+    rowIndex = rowItemSelected[0]
+    itemIndex = rowItemSelected[1]
+    rowNode = m.list.content.GetChild(rowIndex)
+    itemNode = rowNode.GetChild(itemIndex)
+    itemData = itemNode.GetFields()
+    m.scene.CallFunc("NavigateTo", "ProgramDetailView", itemData)
 end function
 
 ' ***************************************************

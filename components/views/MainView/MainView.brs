@@ -2,17 +2,25 @@
 ' *** init()
 ' ***************************************************
 function init() as void
-    m.scene = m.top.GetScene()
     m.viewList = m.top.FindNode("viewList")
-    m.viewList.SetFocus(true)
-    setupMainView()
+    setupViewList()
+    m.top.ObserveFieldScoped("focusedChild", "onFocusChanged")
     m.viewList.ObserveFieldScoped("itemSelected", "onViewSelected")
 end function
 
 ' ***************************************************
-' *** setupMainView()
+' *** onFocusChanged()
 ' ***************************************************
-function setupMainView() as void
+function onFocusChanged() as void
+    if (m.top.HasFocus())
+        m.viewList.SetFocus(true)
+    end if
+end function
+
+' ***************************************************
+' *** setupViewList()
+' ***************************************************
+function setupViewList() as void
     viewListArr = [
         {id: "HomeView", title: "Home"}
     ]
@@ -20,8 +28,8 @@ function setupMainView() as void
     viewListContent = CreateObject("roSGNode", "ContentNode")
     for each item in viewListArr
         view = viewListContent.CreateChild("ContentNode")
-        view.id = item["id"]
-        view.title = item["title"]
+        view.id = item.id
+        view.title = item.title
     end for
     m.viewList.content = viewListContent
 end function

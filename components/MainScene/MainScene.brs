@@ -4,20 +4,28 @@
 function init() as void
     m.viewStack = []
     m.views = m.top.FindNode("views")
+    setupMainView()
+    ' m.trackerTask = m.top.CreateChild("TrackerTask")
+end function
+
+' ***************************************************
+' *** setupMainView()
+' ***************************************************
+function setupMainView() as void
     m.mainView = m.views.CreateChild("MainView")
+    m.mainView.id = "MainView"
     m.viewStack.Push(m.mainView)
-    m.viewList = m.top.FindNode("viewList")
-    ' m.trackerUI = m.top.CreateChild("TrackerTask")
+    m.mainView.SetFocus(true)
 end function
 
 ' ***************************************************
 ' *** NavigateTo(viewName)
 ' ***************************************************
-function NavigateTo(viewName as string) as void
+function NavigateTo(viewName as string, data = {} as object) as void
     childView = m.views.CreateChild(viewName)
+    childView.CallFunc("onViewCreated", data)
     childView.SetFocus(true)
     m.viewStack.Push(childView)
-    m.mainView.visible = false
 end function
 
 ' ***************************************************
@@ -26,10 +34,12 @@ end function
 function onKeyEvent(key, press) as boolean
     isHandled = false
     if (press)
-        if (key = "back" AND m.mainView.visible = false)
-            m.views.RemoveChild(m.viewStack.Pop())
-            m.mainView.visible = true
-            m.viewList.SetFocus(true)
+        if (key = "back")
+            currView = m.viewStack.Peek()
+            if (currView.id <> m.mainView.id)
+                m.views.RemoveChild(m.viewStack.Pop())
+                m.viewStack.Peek().SetFocus(true)
+            end if
         end if
         isHandled = true
     end if

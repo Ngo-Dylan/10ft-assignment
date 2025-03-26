@@ -16,8 +16,10 @@ function parseGenericData(response as object) as object
                 itemData = rowData.CreateChild("ContentNode")
                 itemData.AddFields({
                     "contentId": item.contentId,
-                    "images": getImages(item)
-                    "title": getProgramTitle(item)
+                    "images": getImages(item),
+                    "title": getProgramTitle(item),
+                    "ratings": getRatings(item),
+                    "releaseDate": getReleaseDate(item)
                 })
             end for
         else
@@ -65,8 +67,10 @@ function parseRefData(response as object, refType as string, rowTitle as string)
         itemData = rowData.CreateChild("ContentNode")
         itemData.AddFields({
             "contentId": item.contentId,
-            "images": getImages(item)
-            "title": getProgramTitle(item)
+            "images": getImages(item),
+            "title": getProgramTitle(item),
+            "ratings": getRatings(item),
+            "releaseDate": getReleaseDate(item)
         })
     end for
     return rowData
@@ -93,7 +97,10 @@ end function
 ' *** getImages(item)
 ' ***************************************************
 function getImages(item as object) as object
-    return { "tile": getTileImage(item) }
+    return {
+        "tile": getTileImage(item),
+        "background": getBackgroundImage(item)
+    }
 end function
 
 ' ***************************************************
@@ -113,4 +120,45 @@ function getTileImage(item as object, ratio = "1.78" as string) as object
         end if
     end if
     return { "url": url }
+end function
+
+' ***************************************************
+' *** getBackgroundImage(item, ratio)
+' ***************************************************
+function getBackgroundImage(item as object, ratio = "1.78" as string) as object
+    backgroundImageData = item?.image?.hero_collection?[ratio]
+    if (backgroundImageData = invalid)
+        url = "pkg:/"
+    else
+        if (item.type = "DmcSeries")
+            url = backgroundImageData.series.default.url
+        else if (item.type = "StandardCollection")
+            url = backgroundImageData.default.default.url
+        else if (item.type = "DmcVideo")
+            url = backgroundImageData.program.default.url
+        end if
+    end if
+    return { "url": url }
+end function
+
+' ***************************************************
+' *** getRatings(item)
+' ***************************************************
+function getRatings(item as object) as string
+    value = item?.ratings?[0]?.value
+    if (value = invalid) value = ""
+    return value
+end function
+
+' ***************************************************
+' *** getReleaseDate(item)
+' ***************************************************
+function getReleaseDate(item as object) as string
+    date = item?.releases?[0]?.releaseDate
+    if (date = invalid)
+        date = ""
+    else
+        date = "First released: " + date
+    end if
+    return date
 end function

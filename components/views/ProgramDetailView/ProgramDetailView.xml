@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="ProgramDetailView" extends="BaseView">
+    <interface>
+    </interface>
+
+    <script type="text/brightscript" uri="./ProgramDetailView.brs" />
+
+    <children>
+        <Rectangle id="backplate" width="1920" height="1080" color="0x000000" opacity="0.6" />
+        <Poster id="background" width="1920" height="1080" />
+        <Poster uri="pkg:/images/program-detail-gradient.png" width="1920" height="1080" />
+        <Label id="title" width="900" maxLines="2" wrap="true" translation="[120, 170]" />
+        <SimpleLabel id="detail" fontSize="50" />
+    </children>
+</component>
